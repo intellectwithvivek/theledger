@@ -85,6 +85,9 @@ them is invented for demonstration and must not be cited as fact.
 - No `!important` anywhere. VivekUI wraps every selector in `:where()`, so a
   single flat class outranks it.
 - Every route is statically prerendered at build time.
+- Images are resized by the source CDN through a custom `next/image` loader
+  rather than by a hosted image optimizer, so the template has no metered
+  dependency and runs identically on any host.
 
 ## Licence
 

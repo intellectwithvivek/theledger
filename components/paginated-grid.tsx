@@ -39,7 +39,14 @@ export function PaginatedGrid({
 
       <div className={styles.grid}>
         {visible.map((article) => (
-          <ArticleCard key={article.slug} article={article} headingLevel={3} />
+          <ArticleCard
+            key={article.slug}
+            article={article}
+            headingLevel={3}
+            // Two columns inside the xl container, so a card is ~37rem at
+            // desktop widths — far wider than the default card slot.
+            sizes="(min-width: 64rem) 38rem, (min-width: 40rem) 45vw, 100vw"
+          />
         ))}
       </div>
 

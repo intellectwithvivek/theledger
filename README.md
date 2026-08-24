@@ -45,7 +45,7 @@ Prefer your own repository? Use **[Use this template](https://github.com/intelle
 | Script | What it does |
 |---|---|
 | `npm run dev` | Development server (Turbopack) |
-| `npm run build` | Production build — prerenders all 38 routes |
+| `npm run build` | Production build — prerenders all 40 routes |
 | `npm start` | Serve the production build |
 | `npm run lint` | ESLint |
 
@@ -92,6 +92,8 @@ app/
   sitemap.ts robots.ts    generated from the content, not from build time
   manifest.ts             web app manifest
   opengraph-image.tsx     site-level share card
+  icon.png favicon.ico    the Fraunces "L" mark
+  apple-icon.png          iOS home-screen icon
 components/               site chrome and editorial components
 data/
   articles.ts             12 articles, 6 authors, 4 desks — fully typed
@@ -99,6 +101,7 @@ data/
 lib/
   seo.ts                  metadata + JSON-LD builders
   images.ts               Unsplash sizing helper
+  image-loader.ts         custom next/image loader (see Images below)
 public/llms.txt           AEO attribution file
 ```
 
@@ -112,6 +115,7 @@ public/llms.txt           AEO attribution file
 | Articles, authors, desks | `data/articles.ts` |
 | Accent colour, corner radius, hairline weight | the token block at the top of `app/globals.css` |
 | Typefaces | the `next/font` calls in `app/layout.tsx` |
+| Icons and favicon | `app/icon.png`, `app/apple-icon.png`, `app/favicon.ico` |
 | Remove the VivekUI credit | the badge in `components/site-navbar.tsx` and the credit line in `components/site-footer.tsx` |
 
 **One value drives the whole site's identity.** Change `SITE.url` in
@@ -124,6 +128,26 @@ adding one case to `Block` and one branch to `components/article-body.tsx`.
 Nothing on the site calls `dangerouslySetInnerHTML` on content.
 
 ---
+
+## Images: no optimizer, no quota
+
+`next/image` here runs through a **custom loader** (`lib/image-loader.ts`)
+that hands resizing to the source CDN instead of a hosted image optimizer.
+
+Vercel's built-in optimization is a metered feature: once the quota is spent,
+every `/_next/image` request answers `402` and the site loses all of its
+photography at once. A free template should not carry a paid dependency in its
+critical path — so Unsplash, which is already serving the bytes, does the
+resizing through its own `w`/`h`/`q`/`auto=format` parameters.
+
+Nothing is lost. `next/image` still builds the `srcset`, still honours `sizes`,
+and still ships AVIF/WebP to browsers that accept them — a phone downloads a
+phone-sized file exactly as before. The difference is that it costs nothing,
+cannot hit a limit, and behaves identically on Vercel, Netlify, a static export
+or a VPS.
+
+To go back to the built-in optimizer, delete the two `loader` lines in
+`next.config.ts`; the `remotePatterns` it needs are already there.
 
 ## SEO &amp; AEO
 

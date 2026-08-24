@@ -12,6 +12,17 @@ interface ArticleCardProps {
   compact?: boolean
   /** Heading level, so a card never breaks the outline of its page. */
   headingLevel?: 2 | 3 | 4
+  /**
+   * `sizes` for the thumbnail.
+   *
+   * This card appears in three different grids — the homepage Latest grid
+   * (two columns, three above 90rem), the three-up Read next rail, and the
+   * two-column desk listing — so no single value is right everywhere. The
+   * default covers the first two; the desk listing passes its own, because
+   * its cards are nearly twice as wide and were being served a 384px file
+   * for a 596px slot.
+   */
+  sizes?: string
 }
 
 /**
@@ -26,6 +37,7 @@ export function ArticleCard({
   article,
   compact = false,
   headingLevel = 3,
+  sizes = '(min-width: 90rem) 25rem, (min-width: 64rem) 22rem, (min-width: 40rem) 45vw, 100vw',
 }: ArticleCardProps) {
   const author = getAuthor(article.authorId)
   const category = getCategory(article.category)
@@ -43,7 +55,7 @@ export function ArticleCard({
           alt={article.hero.alt}
           width={720}
           height={Math.round(720 / RATIO.card)}
-          sizes="(min-width: 64rem) 22rem, (min-width: 40rem) 45vw, 100vw"
+          sizes={sizes}
           className={styles.thumb}
         />
       ) : null}
