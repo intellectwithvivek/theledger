@@ -1,0 +1,49 @@
+.byline {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--vk-space-4);
+  margin-block: var(--vk-space-6);
+  padding-block: var(--vk-space-4);
+  border-block: var(--rule-width) solid var(--rule);
+  background: transparent;
+}
+
+.detail {
+  display: grid;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.name {
+  font-family: var(--vk-font-sans);
+  font-size: 0.9375rem;
+  color: var(--vk-color-muted);
+}
+
+.strong {
+  color: var(--vk-color-fg);
+  font-weight: 600;
+}
+
+.role {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--vk-color-primary);
+  margin-block-start: 0.15rem;
+}
+
+.bio {
+  font-family: var(--font-read);
+  line-height: 1.5;
+  max-inline-size: 46ch;
+}
+
+.stamp {
+  font-family: var(--vk-font-sans);
+  font-size: 0.75rem;
+  color: var(--vk-color-muted);
+  font-variant-numeric: tabular-nums;
+}

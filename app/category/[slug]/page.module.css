@@ -1,0 +1,32 @@
+.page {
+  padding-block: var(--vk-space-8) var(--vk-space-16);
+}
+
+.crumbs {
+  padding-block-end: var(--vk-space-4);
+  border-block-end: var(--rule-width) solid var(--rule);
+  margin-block-end: var(--vk-space-8);
+}
+
+.header {
+  padding-block-end: var(--vk-space-6);
+  border-block-end: 3px solid var(--vk-color-fg);
+}
+
+.title {
+  font-size: var(--display-1);
+  letter-spacing: -0.04em;
+  margin-block: var(--vk-space-2) var(--vk-space-4);
+}
+
+.description {
+  font-family: var(--font-read);
+  font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.3125rem);
+  line-height: 1.5;
+  color: var(--vk-color-fg-subtle);
+  max-inline-size: 52ch;
+}
+
+.count {
+  margin-block-start: var(--vk-space-4);
+}

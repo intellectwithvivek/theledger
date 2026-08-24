@@ -1,26 +1,318 @@
-@import "tailwindcss";
+/* ==========================================================================
+   The Ledger — global stylesheet
 
+   No cascade layers here, on purpose.
+
+   VivekUI ships its stylesheet UNLAYERED, and in the cascade an unlayered
+   normal declaration beats a layered one no matter how specific the layered
+   selector is. Wrapping these rules in `@layer app` would therefore lose
+   every override below — including the accent tokens — to the library's own
+   `:where()` rules, which is a silent and extremely confusing failure.
+
+   Flat classes are the documented way to win instead: every VivekUI selector
+   is wrapped in `:where()` and so carries specificity zero, which a single
+   plain class outranks. That is why there is not one `!important` in here.
+
+   Order of business:
+     tokens   re-point the --vk-* custom properties (restyle, not override)
+     base     element defaults for the parts of the page we own
+     app      reusable editorial patterns: masthead, hairline grid, kicker
+
+   The identity of this site is typographic. Two families do the work:
+   Fraunces for display, Newsreader for reading. Images stay quiet.
+   ========================================================================== */
+
+/* --- tokens ------------------------------------------------------------ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* --- Accent: editorial ink blue ------------------------------------ */
+  --vk-color-primary: #123fc9;
+  --vk-color-primary-hover: #0e33a6;
+  --vk-color-primary-active: #0b2a89;
+  --vk-color-primary-subtle: #eaefff;
+  --vk-color-primary-subtle-fg: #0d2f96;
+  --vk-color-ring: #123fc9;
+
+  /* --- Type ---------------------------------------------------------- */
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-read: var(--font-newsreader), ui-serif, Georgia, serif;
+  --vk-font-sans:
+    ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+
+  /* --- The hairline ---------------------------------------------------
+     One value for every rule on the site. Newspaper column rules are the
+     signature element here, so they get a token of their own rather than
+     borrowing the component border colour. */
+  --rule: color-mix(in oklab, var(--vk-color-fg) 18%, transparent);
+  --rule-strong: color-mix(in oklab, var(--vk-color-fg) 46%, transparent);
+  --rule-width: 1px;
+
+  /* Column gutter for the hairline grid. */
+  --gutter: clamp(1rem, 2.4vw, 2rem);
+
+  /* Editorial display scale — steeper than the library's UI scale. */
+  --display-1: clamp(2.75rem, 1.6rem + 5.6vw, 6rem);
+  --display-2: clamp(2rem, 1.3rem + 3.2vw, 3.5rem);
+  --display-3: clamp(1.5rem, 1.2rem + 1.4vw, 2.125rem);
+  --display-4: clamp(1.25rem, 1.1rem + 0.7vw, 1.5rem);
+
+  /* Print sensibility: corners are square here. */
+  --vk-radius-xs: 2px;
+  --vk-radius-sm: 2px;
+  --vk-radius-md: 3px;
+  --vk-radius-lg: 4px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root[data-theme="dark"] {
+  --vk-color-primary: #7ea2ff;
+  --vk-color-primary-hover: #9bb6ff;
+  --vk-color-primary-active: #b3c7ff;
+  --vk-color-primary-subtle: #131c3a;
+  --vk-color-primary-subtle-fg: #b9caff;
+  --vk-color-ring: #7ea2ff;
+  --rule: color-mix(in oklab, var(--vk-color-fg) 24%, transparent);
+  --rule-strong: color-mix(in oklab, var(--vk-color-fg) 52%, transparent);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* --- base ------------------------------------------------------------ */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--vk-color-bg);
+  color: var(--vk-color-fg);
+  font-family: var(--vk-font-sans);
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+}
+
+/* Headlines are display type everywhere, at every level. */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+/* Keep the skip link out of the way until a keyboard finds it. */
+.skip-link {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  z-index: 200;
+  padding: var(--vk-space-3) var(--vk-space-4);
+  background: var(--vk-color-fg);
+  color: var(--vk-color-bg);
+  font-size: var(--vk-text-sm);
+  font-weight: 600;
+  translate: 0 -140%;
+}
+
+.skip-link:focus-visible {
+  translate: 0 0;
+}
+
+/* --- app ------------------------------------------------------------ */
+/* --- Masthead -------------------------------------------------------
+   The wordmark. Fraunces sharpens its own contrast as it grows, which is
+   exactly what a masthead wants and what a static face cannot do. */
+.masthead {
+  font-family: var(--font-display);
+  font-variation-settings:
+    "SOFT" 0,
+    "WONK" 1;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 0.9;
+}
+
+/* --- The kicker -----------------------------------------------------
+   Small, spaced, upper-case sans. The counterweight to all that serif;
+   it is what makes the page read as a magazine rather than a blog. */
+.kicker {
+  font-family: var(--vk-font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--vk-color-muted);
+}
+
+.kicker-accent {
+  color: var(--vk-color-primary);
+}
+
+/* --- Hairline rules -------------------------------------------------- */
+.rule-top {
+  border-block-start: var(--rule-width) solid var(--rule);
+}
+
+.rule-bottom {
+  border-block-end: var(--rule-width) solid var(--rule);
+}
+
+/* The heavy rule under a section head — the one piece of visual weight
+   this design allows itself. */
+.rule-heavy {
+  border-block-end: 3px solid var(--vk-color-fg);
+}
+
+/* --- The column grid -------------------------------------------------
+   Children are separated by a real hairline sitting in the gutter, the
+   way a printed page does it, rather than by whitespace alone. Collapses
+   to a single stacked column on narrow screens, where the rule flips
+   from vertical to horizontal. */
+.colgrid {
+  display: grid;
+  gap: 0;
+}
+
+.colgrid > * + * {
+  border-block-start: var(--rule-width) solid var(--rule);
+  padding-block-start: var(--gutter);
+  margin-block-start: var(--gutter);
+}
+
+@media (min-width: 48rem) {
+  .colgrid {
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+  }
+
+  .colgrid > * + * {
+    border-block-start: 0;
+    border-inline-start: var(--rule-width) solid var(--rule);
+    padding-block-start: 0;
+    margin-block-start: 0;
+    padding-inline-start: var(--gutter);
+    margin-inline-start: var(--gutter);
+  }
+}
+
+/* --- Reading typography ---------------------------------------------
+   VivekUI's Prose sets the rhythm; we only change the voice. */
+.vk-prose {
+  font-family: var(--font-read);
+  font-size: 1.1875rem;
+  line-height: 1.62;
+}
+
+.vk-prose h2 {
+  font-size: var(--display-3);
+  margin-block: 2.2rem 0.85rem;
+}
+
+.vk-prose h3 {
+  font-size: var(--display-4);
+  margin-block: 1.8rem 0.7rem;
+}
+
+.vk-prose a {
+  color: inherit;
+  text-decoration-color: var(--vk-color-primary);
+  text-decoration-thickness: from-font;
+  text-underline-offset: 0.18em;
+}
+
+.vk-prose a:hover {
+  color: var(--vk-color-primary);
+}
+
+/* Inline code inside reading copy should not shout. */
+.vk-prose :not(pre) > code {
+  font-size: 0.86em;
+}
+
+/* The drop cap. Scoped to the opening paragraph of an article body via
+   an explicit class, so a pull-quote or a figure can never inherit it. */
+@supports (initial-letter: 3) or (-webkit-initial-letter: 3) {
+  .dropcap > p:first-of-type::first-letter {
+    -webkit-initial-letter: 3;
+    initial-letter: 3;
+    font-family: var(--font-display);
+    font-weight: 700;
+    margin-inline-end: 0.09em;
+    color: var(--vk-color-primary);
+  }
+}
+
+/* --- Tabular figures wherever numbers are compared ------------------- */
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+/* --- Motion ---------------------------------------------------------
+   Honour the OS preference globally. VivekUI already does this per
+   component; this covers our own CSS and any transition we add later. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    transition-duration: 0.01ms;
+    scroll-behavior: auto;
+  }
+}
+
+/* --- Chart data tables: contain the visually-hidden copy ---------------
+   Every VivekUI chart renders a visually hidden <table> of its numbers
+   after the SVG, which is exactly the right thing to do for assistive
+   technology. It is hidden with the standard recipe — clip-path, 1px box,
+   position: absolute — but `inline-size: 1px` is only a MINIMUM for a
+   `display: table` box: CSS tables always grow to fit their content, and
+   `white-space: nowrap` stops the columns collapsing. So the box stays
+   several hundred pixels wide. Being absolutely positioned it pushes
+   nothing around, but it still extends the scrollable overflow area of its
+   containing block, and the front page picked up a horizontal scrollbar
+   from the five sparklines in the Most read rail.
+
+   Setting `display: block` on the table would fix the width and destroy the
+   table semantics the element exists for. So the containing block clips it
+   instead: `.vk-chart` is already positioned, `.vk-sparkline` is not.
+   Nothing visible is lost — chart tooltips are drawn inside the SVG and the
+   legend is in normal flow. */
+.vk-chart,
+.vk-sparkline {
+  overflow: clip;
+}
+
+.vk-sparkline {
+  position: relative;
+}
+
+/* --- Prose flow spacing -------------------------------------------------
+   VivekUI 0.5 emits its flow rule first:
+
+     :where(.vk-prose) > :where(* + *) { margin-block-start: var(--vk-space-4) }
+
+   and then, further down the same stylesheet:
+
+     :where(.vk-prose p), ... :where(.vk-prose figure) { margin-block: 0 }
+
+   Both carry specificity zero, so the later reset wins and every paragraph,
+   list, figure and blockquote ends up flush against the one before it. (The
+   only survivor is the `h2 + *` rule, which is emitted later still — which is
+   why a paragraph after a heading was the one thing that did have a gap.)
+
+   A single flat class outranks both, so the flow is restored here rather than
+   patched per element. Spacing is in `em` so it tracks the reading size. */
+.vk-prose > * + * {
+  margin-block-start: 1.15em;
+}
+
+/* Figures and pull quotes interrupt the column rather than continue it, so
+   they take more air on both sides than a paragraph break does. */
+.vk-prose > * + figure,
+.vk-prose > figure + *,
+.vk-prose > * + blockquote,
+.vk-prose > blockquote + * {
+  margin-block-start: 2rem;
 }

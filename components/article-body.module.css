@@ -1,0 +1,85 @@
+/* Prose caps itself at 68ch. Our reading face is set larger than the
+   library's default, so 68 characters comes out wider than it should; 62
+   keeps the line length in the range this typeface was drawn for. */
+.body {
+  max-inline-size: 62ch;
+}
+
+.list {
+  padding-inline-start: 1.15em;
+}
+
+.list li {
+  margin-block-end: 0.55em;
+  padding-inline-start: 0.25em;
+}
+
+.list li::marker {
+  color: var(--vk-color-primary);
+}
+
+/* --- The pull quote --------------------------------------------------
+   Set in display type at a size that interrupts the column, with a heavy
+   rule above it rather than the usual indent. */
+.pullquote {
+  padding-block-start: 1.15rem;
+  border-block-start: 3px solid var(--vk-color-fg);
+  border-inline-start: 0;
+  padding-inline: 0;
+}
+
+.pullquote p {
+  font-family: var(--font-display);
+  font-size: clamp(1.375rem, 1.1rem + 1.2vw, 1.875rem);
+  font-weight: 500;
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+  margin-block-end: 0.5rem;
+}
+
+.pullquote cite {
+  display: block;
+  font-style: normal;
+}
+
+/* Figure spacing lives in globals.css, with the rest of the Prose flow. */
+.figureImage {
+  width: 100%;
+  height: auto;
+  border: var(--rule-width) solid var(--rule);
+}
+
+.caption {
+  margin-block-start: 0.6rem;
+  padding-block-start: 0.5rem;
+  border-block-start: var(--rule-width) solid var(--rule);
+  font-family: var(--vk-font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--vk-color-muted);
+  text-wrap: pretty;
+}
+
+/* --- Charts in the column --------------------------------------------
+   The chart is the one element allowed to break the measure and run the
+   full width of the reading column, because a squeezed chart is a lie. */
+.chartFigure {
+  border: var(--rule-width) solid var(--rule);
+  padding: var(--vk-space-4);
+  background: var(--vk-color-surface);
+}
+
+.chartFigure .caption {
+  margin-block-start: var(--vk-space-3);
+}
+
+.chart {
+  width: 100%;
+}
+
+.code {
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  border: var(--rule-width) solid var(--rule);
+}

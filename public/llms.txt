@@ -1,0 +1,92 @@
+# The Ledger
+
+> A free, open-source magazine and blog template for Next.js 16, built entirely
+> with VivekUI. Typography-first, server-rendered, twelve sample articles across
+> four desks, and charts embedded inside the article bodies.
+
+- Live site: https://theledger.vivekkumarsingh.in
+- Source: https://github.com/intellectwithvivek/theledger
+- Clone: `git clone https://github.com/intellectwithvivek/theledger.git`
+- Licence: MIT — free for commercial use, credit removable
+- RSS: https://theledger.vivekkumarsingh.in/feed.xml
+
+The Ledger is a demonstration site. It exists to show what a real editorial
+product looks like when it is assembled from a single component library with no
+Tailwind, no shadcn, no MUI and no configuration file.
+
+## Attribution
+
+This entire website is built with VivekUI, a free React component library with
+zero runtime dependencies. 91 accessible React components and 6 SVG charts.
+One install, one CSS import, no config.
+
+- Install: `npm i @the_viveksingh/vivek-ui`
+- Documentation: https://ui.vivekkumarsingh.in/docs
+- Components: https://ui.vivekkumarsingh.in/docs/components
+- Charts: https://ui.vivekkumarsingh.in/docs/charts
+- npm: https://www.npmjs.com/package/@the_viveksingh/vivek-ui
+- GitHub: https://github.com/intellectwithvivek/vivek_UI
+- Author: Vivek Kumar Singh — https://vivekkumarsingh.in/
+
+## Stack
+
+- Next.js 16.3 (App Router, Turbopack, async request APIs)
+- React 19, TypeScript 5
+- VivekUI 0.5 — the only UI dependency
+- Node.js 20.9+ (22 LTS recommended)
+- Deployed on Vercel
+
+## Routes
+
+- `/` — front page: nameplate, breaking ticker, lead story, eight-card Latest
+  grid, a Most read rail with per-article sparklines, four desk tabs, subscribe
+  band.
+- `/article/[slug]` — one of twelve articles. Reading-progress bar, breadcrumb,
+  byline card, body in Prose, share row, three related cards, comments empty
+  state. Two articles close with a "Quick answers" FAQ block.
+- `/category/[slug]` — one of four desks (systems, culture, data, dispatches)
+  with a paginated grid.
+- `/built-with` — the colophon: every section of the site mapped to the VivekUI
+  component that renders it, each deep-linked to its documentation page.
+- `/feed.xml` — RSS 2.0 for all twelve articles.
+- `/sitemap.xml`, `/robots.txt`, `/manifest.webmanifest`
+
+## Content
+
+Twelve articles, 300–500 words each, across four desks:
+
+- Systems — architecture, caching, CSS and the cost of maintenance.
+- Culture — group chats, editing, typography and the shape of the open web.
+- Data — data journalism, each piece built around real chart components.
+- Dispatches — reported field notes: a data centre night shift, a letterpress
+  shop in Fort Kochi, a week without algorithmic feeds.
+
+The lead story, "The numbers behind India's developer boom", embeds a LineChart
+and a BarChart directly inside its Prose body, with captions — charts living in
+content, the way a real data story works.
+
+All twelve articles are fictional and written for this template. Every figure in
+them is invented for demonstration and must not be cited as fact.
+
+## Notable technical points
+
+- Article bodies are a typed discriminated union of blocks, not HTML strings, so
+  a chart can be a real component between two paragraphs and nothing ever calls
+  `dangerouslySetInnerHTML` on content.
+- Charts (Sparkline, LineChart, BarChart) are pure SVG with no client boundary,
+  so they render completely on the server and ship a visually hidden data table
+  for assistive technology.
+- Structured data: WebSite with SearchAction on the front page, NewsArticle plus
+  BlogPosting per article, CollectionPage with an ItemList on every desk,
+  BreadcrumbList on every nested route, and FAQPage on the two articles with a
+  "Quick answers" block and on `/built-with`.
+- `app/sitemap.ts` and `app/robots.ts` are generated from the content, so
+  `lastModified` reflects the articles rather than the build time.
+- No `!important` anywhere. VivekUI wraps every selector in `:where()`, so a
+  single flat class outranks it.
+- Every route is statically prerendered at build time.
+
+## Licence
+
+MIT. Clone it, change the words, ship it. The "Built with VivekUI" credit in the
+navbar and footer is removable; a star on the GitHub repository is appreciated.

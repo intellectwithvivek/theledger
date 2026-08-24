@@ -1,0 +1,40 @@
+.page {
+  padding-block: var(--vk-space-16);
+}
+
+.title {
+  font-size: var(--display-1);
+  letter-spacing: -0.038em;
+  margin-block: var(--vk-space-3) var(--vk-space-5);
+  max-inline-size: 18ch;
+}
+
+.copy {
+  font-family: var(--font-read);
+  font-size: 1.125rem;
+  line-height: 1.55;
+  color: var(--vk-color-muted);
+  max-inline-size: 52ch;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--vk-space-3);
+  margin-block-start: var(--vk-space-6);
+}
+
+.suggestions {
+  margin-block-start: var(--vk-space-16);
+  padding-block-start: var(--vk-space-4);
+  border-block-start: 3px solid var(--vk-color-fg);
+}
+
+.suggestionsTitle {
+  color: var(--vk-color-fg);
+  margin-block-end: var(--vk-space-6);
+}
+
+.grid {
+  align-items: start;
+}

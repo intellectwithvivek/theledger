@@ -1,0 +1,16 @@
+.faq {
+  margin-block-start: var(--vk-space-12);
+  padding-block: var(--vk-space-8);
+  border-block-start: 3px solid var(--vk-color-fg);
+  background: transparent;
+}
+
+.faq summary {
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
+}
+
+.faq p {
+  font-family: var(--font-read);
+  line-height: 1.6;
+}

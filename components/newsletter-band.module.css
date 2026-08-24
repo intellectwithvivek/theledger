@@ -1,0 +1,58 @@
+/* The band itself runs edge to edge — that full-bleed rule is the point —
+   but its CONTENTS must not. Without a max width the copy and the form get
+   flung to opposite sides of a wide monitor with a lake of dead space
+   between them, which is what this container prevents. 80rem matches the
+   `xl` Container the rest of the front page uses, so the band lines up with
+   the nameplate and the grid above it. */
+.band {
+  margin-block: var(--vk-space-16) 0;
+  padding-block: var(--vk-space-12);
+  border-block: 3px solid var(--vk-color-fg);
+  background: var(--vk-color-surface-subtle);
+}
+
+.inner {
+  display: grid;
+  gap: var(--vk-space-8);
+  max-inline-size: 80rem;
+  margin-inline: auto;
+  padding-inline: clamp(1rem, 3vw, 2rem);
+}
+
+.copy {
+  min-width: 0;
+}
+
+.title {
+  font-size: var(--display-2);
+  margin-block: var(--vk-space-2) var(--vk-space-3);
+  max-inline-size: 16ch;
+}
+
+.blurb {
+  font-family: var(--font-read);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: var(--vk-color-muted);
+  max-inline-size: 46ch;
+}
+
+.form {
+  min-width: 0;
+}
+
+@media (min-width: 52rem) {
+  /* A fixed-width form column rather than a fraction: the field only needs
+     enough room for an email address, and letting it grow with the viewport
+     is what made the two halves drift apart. */
+  .inner {
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 23rem);
+    gap: var(--gutter);
+    align-items: center;
+  }
+
+  .form {
+    padding-inline-start: var(--gutter);
+    border-inline-start: var(--rule-width) solid var(--rule);
+  }
+}

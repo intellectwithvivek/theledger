@@ -1,0 +1,131 @@
+.page {
+  padding-block: var(--vk-space-8) var(--vk-space-16);
+}
+
+.crumbs {
+  padding-block-end: var(--vk-space-4);
+  border-block-end: var(--rule-width) solid var(--rule);
+  margin-block-end: var(--vk-space-8);
+}
+
+/* The library caps every crumb at 18ch and asks for an ellipsis, but
+   `text-overflow` does nothing on a flex container — so a headline-length
+   crumb clips mid-word with no ellipsis to show for it. The current-page
+   crumb carries no icon, so it can safely be a block box, which is what
+   makes the ellipsis render, and it gets more room because it is always the
+   longest item in the trail. */
+.crumbs :global(.vk-breadcrumb__page) {
+  display: block;
+  max-width: min(48ch, 100%);
+}
+
+/* ---- Header -----------------------------------------------------------
+   No `ch` unit on this element: `ch` resolves against the font-size of the
+   element it is written on, and this one inherits the 16px body size — so
+   `34ch` here would cap the whole header at about 270px and shred the
+   headline. The measure is set on the headline and the dek instead, where
+   `ch` matches the type each is actually set in. */
+.header {
+  max-inline-size: 54rem;
+}
+
+.kickerRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--vk-space-3);
+  margin-block-end: var(--vk-space-4);
+}
+
+.badge {
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.headline {
+  font-size: var(--display-1);
+  letter-spacing: -0.038em;
+  line-height: 0.98;
+  margin-block-end: var(--vk-space-5);
+  max-inline-size: 17ch;
+}
+
+.dek {
+  font-family: var(--font-read);
+  font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--vk-color-fg-subtle);
+  max-inline-size: 44ch;
+}
+
+/* ---- Hero art --------------------------------------------------------- */
+.hero {
+  margin-block: var(--vk-space-8);
+}
+
+.heroImage {
+  width: 100%;
+  height: auto;
+  border: var(--rule-width) solid var(--rule);
+}
+
+.heroCaption {
+  margin-block-start: 0.6rem;
+  padding-block-start: 0.5rem;
+  border-block-start: var(--rule-width) solid var(--rule);
+  font-size: 0.8125rem;
+  color: var(--vk-color-muted);
+  max-inline-size: 62ch;
+}
+
+/* ---- Section furniture ------------------------------------------------ */
+.sectionHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--vk-space-3);
+  padding-block-end: var(--vk-space-2);
+  border-block-end: 3px solid var(--vk-color-fg);
+  margin-block-end: var(--vk-space-6);
+}
+
+.sectionTitle {
+  font-size: var(--display-3);
+}
+
+.moreLink {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 24px;
+  font-family: var(--vk-font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--vk-color-primary);
+  text-decoration: none;
+}
+
+.moreLink:hover {
+  color: var(--vk-color-fg);
+}
+
+.related {
+  margin-block-start: var(--vk-space-12);
+}
+
+.relatedGrid {
+  align-items: start;
+}
+
+.comments {
+  margin-block-start: var(--vk-space-16);
+}
+
+.empty {
+  margin-block-start: var(--vk-space-6);
+  border: var(--rule-width) dashed var(--rule);
+}

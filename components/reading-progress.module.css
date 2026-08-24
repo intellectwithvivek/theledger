@@ -1,0 +1,16 @@
+/* Pinned to the very top of the viewport, above the sticky navbar. */
+.wrap {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 1050;
+  pointer-events: none;
+}
+
+/* Progress takes its height from `data-size`; a plain class outranks the
+   library's `:where()` rule, so 3px wins without an importance flag. */
+.bar {
+  block-size: 3px;
+  border-radius: 0;
+  background: color-mix(in oklab, var(--vk-color-fg) 8%, transparent);
+}

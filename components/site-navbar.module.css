@@ -1,0 +1,134 @@
+/* The folio strip above the nameplate. */
+.folio {
+  border-block-end: var(--rule-width) solid var(--rule);
+  background: var(--vk-color-bg);
+}
+
+.folioInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--vk-space-4);
+  max-width: 80rem;
+  margin-inline: auto;
+  padding: 0.4rem clamp(1rem, 3vw, 2rem);
+}
+
+/* The middle item is the first thing to go when space runs out. */
+.folioMiddle {
+  display: none;
+}
+
+.folioLink {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 24px;
+  padding-inline: 0.25rem;
+  margin-inline-end: -0.25rem;
+  color: var(--vk-color-muted);
+  text-decoration: none;
+}
+
+.folioLink:hover {
+  color: var(--vk-color-primary);
+}
+
+@media (min-width: 40rem) {
+  .folioMiddle {
+    display: inline;
+  }
+}
+
+/* --- The bar ---------------------------------------------------------- */
+.bar {
+  background: color-mix(in oklab, var(--vk-color-bg) 88%, transparent);
+  backdrop-filter: saturate(1.6) blur(10px);
+  border-block-end-color: var(--rule);
+}
+
+/* The wordmark is a standalone link, so it needs a real hit area rather
+   than just the cap height of the type. */
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 24px;
+  font-size: clamp(1.375rem, 1.1rem + 1.1vw, 1.875rem);
+  color: var(--vk-color-fg);
+  text-decoration: none;
+}
+
+/* Category links read as small caps, not as app navigation. */
+.links {
+  font-family: var(--vk-font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.actions {
+  gap: var(--vk-space-2);
+}
+
+.search {
+  gap: var(--vk-space-2);
+  color: var(--vk-color-muted);
+  border: var(--rule-width) solid var(--rule);
+}
+
+.searchLabel {
+  display: none;
+}
+
+.searchKbd {
+  display: none;
+}
+
+@media (min-width: 52rem) {
+  .searchLabel {
+    display: inline;
+  }
+
+  .searchKbd {
+    display: inline-flex;
+  }
+}
+
+/* The promotion badge. Hidden on the narrowest screens, where the bar has
+   room for the wordmark, search and the theme toggle and nothing else. */
+.badgeLink {
+  display: none;
+  text-decoration: none;
+}
+
+.badge {
+  font-size: 0.6875rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+@media (min-width: 64rem) {
+  .badgeLink {
+    display: inline-flex;
+  }
+}
+
+/* --- Clone / repo action ----------------------------------------------
+   The label drops away first on narrow bars, leaving the GitHub mark; the
+   button keeps its aria-label either way, so the control never becomes an
+   unnamed icon. */
+.repo {
+  gap: var(--vk-space-2);
+  border-color: var(--rule-strong);
+  white-space: nowrap;
+}
+
+.repoLabel {
+  display: none;
+}
+
+@media (min-width: 30rem) {
+  .repoLabel {
+    display: inline;
+  }
+}

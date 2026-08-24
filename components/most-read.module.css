@@ -1,0 +1,96 @@
+.rail {
+  border-block-start: 3px solid var(--vk-color-fg);
+  padding-block-start: var(--vk-space-3);
+}
+
+.title {
+  margin-block-end: var(--vk-space-4);
+  color: var(--vk-color-fg);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--vk-space-3);
+  padding-block: var(--vk-space-4);
+  border-block-start: var(--rule-width) solid var(--rule);
+}
+
+.item:first-child {
+  border-block-start: 0;
+  padding-block-start: 0;
+}
+
+/* The rank numeral is the graphic element of the rail: display face, large,
+   and deliberately low-contrast so it reads as ornament, not as content. */
+.rank {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: color-mix(in oklab, var(--vk-color-fg) 22%, transparent);
+  min-inline-size: 1.3em;
+}
+
+.body {
+  min-width: 0;
+}
+
+.headline {
+  font-size: 1rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin-block-end: 0.35rem;
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.link:hover {
+  color: var(--vk-color-primary);
+}
+
+.item:has(.link:focus-visible) {
+  outline: 2px solid var(--vk-color-primary);
+  outline-offset: 3px;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--vk-space-2);
+}
+
+.views {
+  font-size: 0.6875rem;
+  color: var(--vk-color-muted);
+}
+
+.spark {
+  inline-size: 5rem;
+}
+
+/* The sparkline is supporting detail; on a narrow rail the headline wins. */
+@media (max-width: 30rem) {
+  .spark {
+    display: none;
+  }
+}

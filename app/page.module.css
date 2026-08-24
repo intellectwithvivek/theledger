@@ -1,0 +1,251 @@
+/* ---- Nameplate -------------------------------------------------------
+   The wordmark at full size. `--display-1` tops out at 6rem, but the
+   nameplate is allowed past that: it scales with the viewport so the
+   letterforms always run edge to edge, which is what makes it read as a
+   masthead rather than as a large heading. */
+.nameplate {
+  padding-block: clamp(2rem, 4vw, 3.5rem) 0;
+}
+
+.nameplateTitle {
+  font-size: clamp(3.25rem, 13.5vw, 11rem);
+  line-height: 0.82;
+  margin: 0;
+  text-align: center;
+}
+
+.nameplateFolio {
+  display: grid;
+  gap: var(--vk-space-2);
+  justify-items: center;
+  text-align: center;
+  margin-block-start: clamp(1rem, 2vw, 1.5rem);
+  padding-block: var(--vk-space-3);
+  border-block: var(--rule-width) solid var(--rule);
+}
+
+@media (min-width: 52rem) {
+  .nameplateFolio {
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    justify-items: stretch;
+    text-align: left;
+  }
+
+  .nameplateFolio > :last-child {
+    text-align: right;
+  }
+}
+
+.tagline {
+  font-family: var(--font-read);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--vk-color-muted);
+  text-align: center;
+}
+
+/* ---- Breaking ticker -------------------------------------------------- */
+.ticker {
+  border-block-end: var(--rule-width) solid var(--rule);
+  background: var(--vk-color-surface-subtle);
+}
+
+.tickerRow {
+  display: flex;
+  align-items: center;
+  gap: var(--vk-space-4);
+  padding-block: 0.6rem;
+  padding-inline: clamp(1rem, 3vw, 2rem);
+  min-width: 0;
+}
+
+.tickerLabel {
+  flex: none;
+  padding: 0.25rem 0.5rem;
+  background: var(--vk-color-primary);
+  color: var(--vk-color-primary-fg);
+}
+
+.marquee {
+  min-width: 0;
+  flex: 1;
+}
+
+.tickerItem {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 24px;
+  gap: var(--vk-space-2);
+  font-family: var(--font-read);
+  font-size: 0.9375rem;
+  color: var(--vk-color-fg);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.tickerItem:hover {
+  color: var(--vk-color-primary);
+}
+
+.tickerDot {
+  font-size: 0.4rem;
+  color: var(--vk-color-primary);
+}
+
+/* ---- Lead story ------------------------------------------------------- */
+.lead {
+  display: grid;
+  gap: var(--vk-space-6);
+  padding-block: clamp(2rem, 4vw, 3.5rem);
+  border-block-end: 3px solid var(--vk-color-fg);
+}
+
+@media (min-width: 60rem) {
+  .lead {
+    grid-template-columns: 1.6fr 1fr;
+    gap: var(--gutter);
+    align-items: start;
+  }
+
+  .leadText {
+    padding-inline-start: var(--gutter);
+    border-inline-start: var(--rule-width) solid var(--rule);
+  }
+}
+
+.leadArt {
+  display: block;
+}
+
+.leadImage {
+  width: 100%;
+  height: auto;
+  border: var(--rule-width) solid var(--rule);
+}
+
+.leadMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--vk-space-3);
+  margin-block-end: var(--vk-space-3);
+}
+
+.leadBadge {
+  font-size: 0.625rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.leadHeadline {
+  font-size: var(--display-2);
+  letter-spacing: -0.032em;
+  margin-block-end: var(--vk-space-4);
+}
+
+.leadLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.leadLink:hover {
+  color: var(--vk-color-primary);
+}
+
+.leadDek {
+  font-family: var(--font-read);
+  font-size: 1.125rem;
+  line-height: 1.55;
+  color: var(--vk-color-fg-subtle);
+  max-inline-size: 48ch;
+  margin-block-end: var(--vk-space-5);
+}
+
+.leadByline {
+  display: flex;
+  align-items: center;
+  gap: var(--vk-space-3);
+  padding-block-start: var(--vk-space-3);
+  border-block-start: var(--rule-width) solid var(--rule);
+  font-family: var(--vk-font-sans);
+  font-size: 0.8125rem;
+  color: var(--vk-color-muted);
+}
+
+.leadAuthor {
+  color: var(--vk-color-fg);
+  font-weight: 600;
+}
+
+/* ---- Latest + rail ---------------------------------------------------- */
+.mainGrid {
+  display: grid;
+  gap: var(--vk-space-12);
+  padding-block: clamp(2rem, 4vw, 3.5rem);
+}
+
+@media (min-width: 64rem) {
+  .mainGrid {
+    grid-template-columns: minmax(0, 1fr) 20rem;
+    gap: var(--gutter);
+  }
+
+  .rail {
+    padding-inline-start: var(--gutter);
+    border-inline-start: var(--rule-width) solid var(--rule);
+    position: sticky;
+    top: 6rem;
+    align-self: start;
+  }
+}
+
+.sectionHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--vk-space-3);
+  padding-block-end: var(--vk-space-2);
+  border-block-end: 3px solid var(--vk-color-fg);
+  margin-block-end: var(--vk-space-6);
+}
+
+.sectionTitle {
+  font-size: var(--display-3);
+}
+
+/* The eight-card grid. Column rules come from the gap plus a hairline on
+   each card's inline start, which is drawn only where a card actually has
+   a neighbour to its left. */
+.latestGrid {
+  display: grid;
+  gap: var(--vk-space-8) var(--gutter);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 40rem) {
+  .latestGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .latestGrid > *:nth-child(2n) {
+    padding-inline-start: var(--gutter);
+    border-inline-start: var(--rule-width) solid var(--rule);
+  }
+}
+
+@media (min-width: 90rem) {
+  .latestGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .latestGrid > *:nth-child(2n) {
+    padding-inline-start: 0;
+    border-inline-start: 0;
+  }
+
+  .latestGrid > *:not(:nth-child(3n + 1)) {
+    padding-inline-start: var(--gutter);
+    border-inline-start: var(--rule-width) solid var(--rule);
+  }
+}

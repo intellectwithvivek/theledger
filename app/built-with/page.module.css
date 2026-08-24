@@ -1,0 +1,169 @@
+.page {
+  padding-block: var(--vk-space-8) var(--vk-space-16);
+}
+
+.crumbs {
+  padding-block-end: var(--vk-space-4);
+  border-block-end: var(--rule-width) solid var(--rule);
+  margin-block-end: var(--vk-space-8);
+}
+
+/* ---- Header ----------------------------------------------------------- */
+.header {
+  padding-block-end: var(--vk-space-8);
+  border-block-end: 3px solid var(--vk-color-fg);
+}
+
+.badge {
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+}
+
+.title {
+  font-size: var(--display-1);
+  letter-spacing: -0.04em;
+  margin-block: var(--vk-space-3) var(--vk-space-5);
+}
+
+/* The opening sentence is the claim the page exists to make, so it is set
+   as a lede rather than as body copy. */
+.lede {
+  font-family: var(--font-read);
+  font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.625rem);
+  line-height: 1.42;
+  max-inline-size: 40ch;
+  margin-block-end: var(--vk-space-4);
+}
+
+.sub {
+  font-family: var(--font-read);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--vk-color-muted);
+  max-inline-size: 60ch;
+}
+
+.install {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--vk-space-3);
+  margin-block-start: var(--vk-space-6);
+}
+
+.installCode {
+  padding: 0.6rem 0.9rem;
+  border: var(--rule-width) solid var(--rule);
+  font-size: 0.9375rem;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--vk-space-3);
+  margin-block-start: var(--vk-space-6);
+}
+
+.repo {
+  margin-block-start: var(--vk-space-4);
+}
+
+/* ---- Sections --------------------------------------------------------- */
+.section {
+  margin-block-start: var(--vk-space-12);
+}
+
+.sectionTitle {
+  font-size: var(--display-3);
+  padding-block-end: var(--vk-space-2);
+  border-block-end: var(--rule-width) solid var(--rule);
+  margin-block-end: var(--vk-space-4);
+}
+
+.sectionCopy {
+  font-family: var(--font-read);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--vk-color-muted);
+  max-inline-size: 62ch;
+  margin-block-end: var(--vk-space-6);
+}
+
+.tableWrap {
+  border: var(--rule-width) solid var(--rule);
+}
+
+.table {
+  font-size: 0.875rem;
+}
+
+.table td:last-child {
+  color: var(--vk-color-muted);
+  min-inline-size: 22rem;
+}
+
+.docLink {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 24px;
+  font-weight: 600;
+  color: var(--vk-color-primary);
+  text-decoration-thickness: from-font;
+  text-underline-offset: 0.15em;
+  white-space: nowrap;
+}
+
+.notes {
+  display: grid;
+  gap: var(--vk-space-4);
+  font-family: var(--font-read);
+  font-size: 1.0625rem;
+  line-height: 1.62;
+  max-inline-size: 66ch;
+}
+
+.notes a {
+  color: var(--vk-color-primary);
+}
+
+.faq {
+  margin-block-start: var(--vk-space-12);
+  padding-block-start: var(--vk-space-8);
+  border-block-start: 3px solid var(--vk-color-fg);
+}
+
+.faq summary {
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
+}
+
+.faq p {
+  font-family: var(--font-read);
+  line-height: 1.6;
+}
+
+.back {
+  margin-block-start: var(--vk-space-12);
+  padding-block-start: var(--vk-space-4);
+  border-block-start: var(--rule-width) solid var(--rule);
+  font-family: var(--vk-font-sans);
+  font-size: 0.875rem;
+}
+
+.back a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 24px;
+  color: var(--vk-color-primary);
+  text-decoration: none;
+}
+
+.back a:hover {
+  text-decoration: underline;
+}
+
+.repo a {
+  color: var(--vk-color-primary);
+  text-decoration-thickness: from-font;
+  text-underline-offset: 0.15em;
+}

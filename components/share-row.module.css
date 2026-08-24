@@ -1,0 +1,17 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--vk-space-3);
+  margin-block: var(--vk-space-8);
+  padding-block: var(--vk-space-4);
+  border-block: var(--rule-width) solid var(--rule);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--vk-space-3);
+}
