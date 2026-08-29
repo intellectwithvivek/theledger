@@ -442,7 +442,7 @@ export default function BuiltWithPage() {
         description="What people ask before cloning it."
         headingLevel={2}
         name="built-with-faq"
-        defaultOpen={0}
+        defaultOpenIndex={0}
         items={SITE_FAQ.map((item) => ({ id: item.question, ...item }))}
       />
 

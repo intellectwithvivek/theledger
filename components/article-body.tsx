@@ -106,6 +106,9 @@ function renderBlock(block: Block, figure: number): ReactNode {
             showGrid
             showAxes
             showLegend={block.series.length > 1}
+            /* A figure in an article: the legend is a key, not a control. 1.0 turns
+               interactive legends on by default, which suits a dashboard, not this. */
+            interactiveLegend={false}
             className={styles.chart}
           />
           <figcaption className={styles.caption}>
