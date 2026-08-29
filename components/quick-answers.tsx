@@ -27,7 +27,7 @@ export function QuickAnswers({
       description="The questions readers send us about this piece, answered in a sentence or three."
       headingLevel={2}
       name={name}
-      defaultOpen={0}
+      defaultOpenIndex={0}
       items={items.map((item) => ({
         id: item.question,
         question: item.question,
